@@ -1,4 +1,5 @@
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Detailed from "./components/Detailed";
 import Home from "./components/Home";
 import Sidebar from "./components/Sidebar";
 
@@ -8,7 +9,8 @@ function App() {
       <Router>
         <Sidebar />
         <Routes>
-          <Route exact path="/" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/project/:id" element={<Detailed />} />
         </Routes>
       </Router>
     </>

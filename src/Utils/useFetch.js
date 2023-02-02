@@ -20,7 +20,7 @@ const useFetch = (url) => {
     fetchData(url);
   }, [url]);
   
-  return { data, setData, isPending };
+  return [ data, setData, isPending ];
 };
 
 export default useFetch;

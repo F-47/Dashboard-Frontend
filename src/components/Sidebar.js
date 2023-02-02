@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Sidebar = () => {
   let [showSideBar, setShowSideBar] = useState(false);
-  let { user, loginWithRedirect, logout, isAuthenticated } =useAuth0();
+  let { user, loginWithRedirect, logout, isAuthenticated } = useAuth0();
   let menuRef = useRef();
 
   useEffect(() => {
@@ -53,20 +53,50 @@ const Sidebar = () => {
         aria-label="Sidebar"
       >
         <ul className="space-y-2">
-          <li className="p-2 text-lg text-slate-900 font-extrabold  rounded-lg">
+          <li className="p-2 text-lg text-slate-900  rounded-lg">
             {isAuthenticated && (
               <div className="userInfo text-xl flex items-center">
-                <img src={user.picture} className="rounded-3xl w-9" alt="" />
-                <div className="name ml-2">
-                  Welcome {user.given_name || user.nickname}
+                <img src={user.picture} className="rounded-3xl w-10 h-10 object-cover object-center" alt="" />
+                <div className="name ml-2 font-semibold">
+                  {user.name || user.nickname}
                 </div>
               </div>
             )}
           </li>
           <li>
+            <form className="my-4">
+              <div className="relative">
+                <div className="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
+                  <svg
+                    aria-hidden="true"
+                    className="w-5 h-5 text-gray-500 dark:text-gray-400"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+                    ></path>
+                  </svg>
+                </div>
+                <input
+                  type="search"
+                  id="default-search"
+                  className="block w-full p-2 pl-10 text-sm text-gray-900 ring-1 placeholder:text-gray-400 ring-gray-400 rounded-lg outline-none"
+                  placeholder="Search"
+                  required
+                />
+              </div>
+            </form>
+          </li>
+          <li>
             <Link
               to="/"
-              className="flex items-center p-2 font-bold text-lg text-gray-900 rounded-lg hover:bg-gray-300"
+              className="flex items-center p-2  text-lg text-gray-900 rounded-lg hover:bg-gray-300"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -82,6 +112,7 @@ const Sidebar = () => {
                   d="M2.25 12l8.954-8.955c.44-.439 1.152-.439 1.591 0L21.75 12M4.5 9.75v10.125c0 .621.504 1.125 1.125 1.125H9.75v-4.875c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21h4.125c.621 0 1.125-.504 1.125-1.125V9.75M8.25 21h8.25"
                 />
               </svg>
+              
               <span className="ml-3">Dashboard</span>
             </Link>
           </li>
@@ -89,7 +120,7 @@ const Sidebar = () => {
             {isAuthenticated && (
               <Link
                 to="/settings"
-                className="flex items-center p-2 font-bold text-lg text-gray-900 rounded-lg hover:bg-gray-300"
+                className="flex items-center p-2  text-lg text-gray-900 rounded-lg hover:bg-gray-300"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -119,7 +150,7 @@ const Sidebar = () => {
             {!isAuthenticated && (
               <div
                 onClick={() => loginWithRedirect()}
-                className="flex items-center p-2 font-bold text-lg text-gray-900 rounded-lg hover:bg-gray-300 cursor-pointer"
+                className="flex items-center p-2  text-lg text-gray-900 rounded-lg hover:bg-gray-300 cursor-pointer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -144,7 +175,7 @@ const Sidebar = () => {
             {isAuthenticated && (
               <div
                 onClick={() => logout({ returnTo: window.location.origin })}
-                className="flex items-center p-2 font-bold text-lg text-gray-900 rounded-lg hover:bg-gray-300 cursor-pointer"
+                className="flex items-center p-2  text-lg text-gray-900 rounded-lg hover:bg-gray-300 cursor-pointer"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
